@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="NetMPKApp.AppViews.User.UserLoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NetMPKApp.AppViews.User"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox x:Name="_LoginBox" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="10,150,10,0" Width="340" PlaceholderText="Login" />
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Logowanie" VerticalAlignment="Top" Margin="0,70,0,0" FontSize="36" FontWeight="Bold" />
+        <PasswordBox x:Name="_PasswordBox" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,200,10,0" Width="340" PlaceholderText="Hasło"/>
+        <Button x:Name="_LoginButton" Content="Zaloguj" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,250,10,0" FontSize="32" Width="340" Background="#FF3276B1" Click="_LoginButton_Click" />
+    </Grid>
+</Page>

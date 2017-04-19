@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MPKService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMPKService_GetStopsNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopsNames" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopsNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopsNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopsWithStreets_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopsWithStreets" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopsWithStreets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopsWithStreetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopByName" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopWithCords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopWithCords" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopWithCords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopWithCordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetAllLines_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllLines" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetAllLines_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllLinesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetLineRoutes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLineRoutes" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetLineRoutes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLineRoutesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetDirectionsForLine_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDirectionsForLine" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetDirectionsForLine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDirectionsForLineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStreetNameByStop_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreetNameByStop" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStreetNameByStop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreetNameByStopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetTimeTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeTable" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetTimeTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetRoutes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoutes" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetRoutes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoutesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_SaveRouteForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRouteForUser" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_SaveRouteForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRouteForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetSavedRoutesForUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavedRoutesForUser" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetSavedRoutesForUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSavedRoutesForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetMapPoints_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMapPoints" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetMapPoints_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMapPointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetPointNeighbours_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPointNeighbours" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetPointNeighbours_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPointNeighboursResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_LoginFree_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginFree" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_LoginFree_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginFreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_EmailFree_InputMessage">
+    <wsdl:part name="parameters" element="tns:EmailFree" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_EmailFree_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EmailFreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_RegisterUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_RegisterUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_LoginUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUser" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_LoginUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMPKService">
+    <wsdl:operation name="GetStopsNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStopsNames" message="tns:IMPKService_GetStopsNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetStopsNamesResponse" message="tns:IMPKService_GetStopsNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStopsWithStreets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStopsWithStreets" message="tns:IMPKService_GetStopsWithStreets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetStopsWithStreetsResponse" message="tns:IMPKService_GetStopsWithStreets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStopByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStopByName" message="tns:IMPKService_GetStopByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetStopByNameResponse" message="tns:IMPKService_GetStopByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStopWithCords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStopWithCords" message="tns:IMPKService_GetStopWithCords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetStopWithCordsResponse" message="tns:IMPKService_GetStopWithCords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllLines">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetAllLines" message="tns:IMPKService_GetAllLines_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetAllLinesResponse" message="tns:IMPKService_GetAllLines_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLineRoutes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetLineRoutes" message="tns:IMPKService_GetLineRoutes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetLineRoutesResponse" message="tns:IMPKService_GetLineRoutes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectionsForLine">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetDirectionsForLine" message="tns:IMPKService_GetDirectionsForLine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetDirectionsForLineResponse" message="tns:IMPKService_GetDirectionsForLine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStreetNameByStop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStreetNameByStop" message="tns:IMPKService_GetStreetNameByStop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetStreetNameByStopResponse" message="tns:IMPKService_GetStreetNameByStop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetTimeTable" message="tns:IMPKService_GetTimeTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetTimeTableResponse" message="tns:IMPKService_GetTimeTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoutes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetRoutes" message="tns:IMPKService_GetRoutes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetRoutesResponse" message="tns:IMPKService_GetRoutes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveRouteForUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/SaveRouteForUser" message="tns:IMPKService_SaveRouteForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/SaveRouteForUserResponse" message="tns:IMPKService_SaveRouteForUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSavedRoutesForUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetSavedRoutesForUser" message="tns:IMPKService_GetSavedRoutesForUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetSavedRoutesForUserResponse" message="tns:IMPKService_GetSavedRoutesForUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMapPoints">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetMapPoints" message="tns:IMPKService_GetMapPoints_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetMapPointsResponse" message="tns:IMPKService_GetMapPoints_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPointNeighbours">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetPointNeighbours" message="tns:IMPKService_GetPointNeighbours_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetPointNeighboursResponse" message="tns:IMPKService_GetPointNeighbours_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginFree">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/LoginFree" message="tns:IMPKService_LoginFree_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/LoginFreeResponse" message="tns:IMPKService_LoginFree_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EmailFree">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/EmailFree" message="tns:IMPKService_EmailFree_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/EmailFreeResponse" message="tns:IMPKService_EmailFree_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/RegisterUser" message="tns:IMPKService_RegisterUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/RegisterUserResponse" message="tns:IMPKService_RegisterUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/LoginUser" message="tns:IMPKService_LoginUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/LoginUserResponse" message="tns:IMPKService_LoginUser_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IMPKService" type="tns:IMPKService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStopsNames">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetStopsNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStopsWithStreets">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetStopsWithStreets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStopByName">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetStopByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStopWithCords">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetStopWithCords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllLines">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetAllLines" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLineRoutes">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetLineRoutes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectionsForLine">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetDirectionsForLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStreetNameByStop">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetStreetNameByStop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeTable">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetTimeTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoutes">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetRoutes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRouteForUser">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/SaveRouteForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSavedRoutesForUser">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetSavedRoutesForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMapPoints">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetMapPoints" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPointNeighbours">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetPointNeighbours" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginFree">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/LoginFree" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EmailFree">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/EmailFree" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/LoginUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MPKService">
+    <wsdl:port name="BasicHttpBinding_IMPKService" binding="tns:BasicHttpBinding_IMPKService">
+      <soap:address location="http://desktop-csb19so:15782/NetMPK.Service.MPKService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
