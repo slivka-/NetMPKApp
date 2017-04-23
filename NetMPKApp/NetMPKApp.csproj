@@ -91,12 +91,11 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
-    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
-    <None Include="Service References\NetMPKService\Arrays1.xsd">
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\NetMPKService\NetMPKApp.NetMPKService.LoginUserResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Service References\NetMPKService\Arrays1.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\NetMPKService\NetMPKApp.NetMPKService.Vector.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -118,6 +117,9 @@
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppViews\Basic\IndexPage.xaml.cs">
+      <DependentUpon>IndexPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppViews\User\UserLoginPage.xaml.cs">
       <DependentUpon>UserLoginPage.xaml</DependentUpon>
@@ -167,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AppViews\Basic\IndexPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppViews\User\UserLoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

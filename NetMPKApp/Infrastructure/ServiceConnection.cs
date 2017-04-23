@@ -1,4 +1,5 @@
-﻿using System.ServiceModel.Channels;
+﻿using System.ServiceModel;
+using System.ServiceModel.Channels;
 
 namespace NetMPKApp.Infrastructure
 {

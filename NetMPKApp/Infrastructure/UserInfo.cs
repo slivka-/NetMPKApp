@@ -8,15 +8,14 @@ namespace NetMPKApp.Infrastructure
 {
     class UserInfo
     {
-
+        private static UserInfo instance;
         public string _userId { get; set; }
+        public string _userLogin { get; set; }
 
         private static object syncRoot = new object();
 
-        public static UserInfo instance
+        public static UserInfo GetInstance()
         {
-            get
-            {
                 if (instance == null)
                 {
                     lock (syncRoot)
@@ -26,16 +25,12 @@ namespace NetMPKApp.Infrastructure
                     }
                 }
                 return instance;
-            }
-            private set
-            {
-                instance = value;
-            }
         }
 
         private UserInfo()
         {
             _userId = "";
+            _userLogin = "";
         }
     }
 }

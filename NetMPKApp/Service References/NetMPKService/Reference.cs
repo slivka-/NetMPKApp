@@ -115,49 +115,8 @@ namespace NetMPKApp.NetMPKService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/RegisterUser", ReplyAction="http://tempuri.org/IMPKService/RegisterUserResponse")]
         System.Threading.Tasks.Task<bool> RegisterUserAsync(string login, string password, string email);
         
-        // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/LoginUser", ReplyAction="http://tempuri.org/IMPKService/LoginUserResponse")]
-        System.Threading.Tasks.Task<NetMPKApp.NetMPKService.LoginUserResponse> LoginUserAsync(NetMPKApp.NetMPKService.LoginUserRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="LoginUser", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class LoginUserRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public string login;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string password;
-        
-        public LoginUserRequest() {
-        }
-        
-        public LoginUserRequest(string login, string password) {
-            this.login = login;
-            this.password = password;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="LoginUserResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class LoginUserResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public bool LoginUserResult;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string userID;
-        
-        public LoginUserResponse() {
-        }
-        
-        public LoginUserResponse(bool LoginUserResult, string userID) {
-            this.LoginUserResult = LoginUserResult;
-            this.userID = userID;
-        }
+        System.Threading.Tasks.Task<System.Tuple<bool, string>> LoginUserAsync(string login, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -271,8 +230,8 @@ namespace NetMPKApp.NetMPKService {
             return base.Channel.RegisterUserAsync(login, password, email);
         }
         
-        public System.Threading.Tasks.Task<NetMPKApp.NetMPKService.LoginUserResponse> LoginUserAsync(NetMPKApp.NetMPKService.LoginUserRequest request) {
-            return base.Channel.LoginUserAsync(request);
+        public System.Threading.Tasks.Task<System.Tuple<bool, string>> LoginUserAsync(string login, string password) {
+            return base.Channel.LoginUserAsync(login, password);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {
@@ -297,7 +256,7 @@ namespace NetMPKApp.NetMPKService {
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IMPKService)) {
-                return new System.ServiceModel.EndpointAddress("http://desktop-csb19so:15782/NetMPK.Service.MPKService.svc");
+                return new System.ServiceModel.EndpointAddress("http://192.168.1.10:15782/NetMPKService");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

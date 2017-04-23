@@ -21,15 +21,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.10:15782/NetMPK.Service.MPKService.svc/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.1.10:15782/NetMPKService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="4c1c266c-4727-474d-8c18-1af5c2b9f9d6" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPK.Service.MPKService.svc/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="6e41aba1-e2b7-4676-ac73-4dbca4844e72" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPK.Service.MPKService.svc/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="a1bfd48e-0ac8-4ae9-9e5f-0635e93b167a" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPK.Service.MPKService.svc/mex" />
-    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="04c8d10e-b66c-4e7a-8192-a12ee17b361c" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPK.Service.MPKService.svc/mex" />
-    <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="7efa93d4-dcc5-4d27-ad30-0e440355af02" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPK.Service.MPKService.svc/mex" />
-    <MetadataFile FileName="System.Windows1.xsd" MetadataType="Schema" ID="f986bce5-a79f-4254-9ee3-699dda846f8b" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPK.Service.MPKService.svc/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="82356d3f-9c15-4088-9660-4c446e811b84" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPKService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="8ec96dee-040e-41a7-a12f-c6ba86de20b8" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPKService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="6ca01e4a-d1d2-4d38-a281-1ee7c9002e79" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPKService/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="5ae9c2f3-315f-403d-be70-7e705b5380cd" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPKService/mex" />
+    <MetadataFile FileName="System1.xsd" MetadataType="Schema" ID="99e15a1e-b653-4c5f-9da4-48d5bee99642" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPKService/mex" />
+    <MetadataFile FileName="System.Windows1.xsd" MetadataType="Schema" ID="183b20fd-b014-4e5d-a97d-5205da137070" SourceId="1" SourceUrl="http://192.168.1.10:15782/NetMPKService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

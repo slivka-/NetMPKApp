@@ -22,5 +22,16 @@ namespace NetMPKApp.Infrastructure
                 rootFrame.GoBack();
             }
         }
+
+        public static async Task<ContentDialogResult> ShowErrorInfo(FrameworkElement parent, string title, string content)
+        {
+            var dialog = new ContentDialog();
+            dialog.MaxWidth = parent.ActualWidth;
+            dialog.Title = title;
+            dialog.PrimaryButtonText = "OK";
+            dialog.Content = content;
+            return await dialog.ShowAsync();
+        }
+
     }
 }
