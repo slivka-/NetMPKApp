@@ -8,9 +8,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="_LoginBox" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="10,150,10,0" Width="340" PlaceholderText="Login" />
         <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Logowanie" VerticalAlignment="Top" Margin="0,70,0,0" FontSize="36" FontWeight="Bold" />
+        <TextBox x:Name="_LoginBox" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="10,150,10,0" Width="340" PlaceholderText="Login" InputScope="EmailSmtpAddress"/>
         <PasswordBox x:Name="_PasswordBox" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,200,10,0" Width="340" PlaceholderText="Hasło"/>
-        <Button x:Name="_LoginButton" Content="Zaloguj" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,250,10,0" FontSize="32" Width="340" Background="#FF3276B1" Click="_LoginButton_Click" />
+        <CheckBox x:Name="_autoLoginCheckBox" Content="Zapamiętaj mnie" HorizontalAlignment="Left" Margin="10,237,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="_LoginButton" Content="Zaloguj" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,280,10,0" FontSize="32" Width="340" Background="#FF3276B1" Click="_LoginButton_Click" />
     </Grid>
 </Page>

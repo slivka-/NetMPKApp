@@ -32,5 +32,10 @@ namespace NetMPKApp.Infrastructure
             _userId = "";
             _userLogin = "";
         }
+
+        public static void ClearUser()
+        {
+            instance = null;
+        }
     }
 }

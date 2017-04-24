@@ -1,12 +1,17 @@
-﻿using System;
+﻿using NetMPKApp.AppViews.Basic;
+using NetMPKApp.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -14,6 +19,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ViewManagement;
 
 namespace NetMPKApp
 {
@@ -22,6 +28,7 @@ namespace NetMPKApp
     /// </summary>
     sealed partial class App : Application
     {
+        private readonly List<Type> closingFrames = new List<Type>() { typeof(WelcomeScreen), typeof(IndexPage) };
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -72,9 +79,15 @@ namespace NetMPKApp
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    if (AutoLogin())
+                        rootFrame.Navigate(typeof(IndexPage), e.Arguments);
+                    else
+                        rootFrame.Navigate(typeof(WelcomeScreen), e.Arguments);
                 }
+
+                SystemNavigationManager.GetForCurrentView().BackRequested += BackRequestHandler;
                 // Ensure the current window is active
+                InitializeUI();
                 Window.Current.Activate();
             }
         }
@@ -101,6 +114,64 @@ namespace NetMPKApp
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void BackRequestHandler(object sender, BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame == null)
+                return;
+            if (closingFrames.Contains(rootFrame.CurrentSourcePageType))
+            {
+                e.Handled = true;
+                Current.Exit();
+                return;
+            }
+            if (rootFrame.CanGoBack && !e.Handled)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+                return;
+            }
+        }
+
+        private bool AutoLogin()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            string _userLogin = localSettings.Values["userLogin"] as string;
+            string _userPassword = localSettings.Values["userEncryptedPassword"] as string;
+            if (_userLogin != null && _userPassword != null)
+            {
+                var client = ServiceConnection.GetInstance().client;
+                Tuple<bool, string> loginResponse = null;
+                try
+                {
+                    var t = client.LoginEncryptedUserAsync(_userLogin, _userPassword);
+                    t.Wait();
+                    loginResponse = t.Result;
+                    if (loginResponse.Item1)
+                    {
+                        var userInfo = UserInfo.GetInstance();
+                        userInfo._userId = loginResponse.Item2;
+                        userInfo._userLogin = _userLogin;
+                    }
+                    return loginResponse.Item1;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        private void InitializeUI()
+        {
+            if (Windows.Foundation.Metadata.ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
+            {
+                var task =  StatusBar.GetForCurrentView().HideAsync().AsTask();
+                task.Wait();
+            }
         }
     }
 }

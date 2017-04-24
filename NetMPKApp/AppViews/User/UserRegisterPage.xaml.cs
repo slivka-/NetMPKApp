@@ -26,7 +26,6 @@ namespace NetMPKApp.AppViews.User
     {
         public UserRegisterPage()
         {
-            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += ((s, e) => NavHelper.BackRequestHandler(s, e, Window.Current.Content));
             InitializeComponent();
         }
     }

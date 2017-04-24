@@ -121,13 +121,19 @@
     <Compile Include="AppViews\Basic\IndexPage.xaml.cs">
       <DependentUpon>IndexPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppViews\Tracking\LinesPage.xaml.cs">
+      <DependentUpon>LinesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppViews\Tracking\StopsPage.xaml.cs">
+      <DependentUpon>StopsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppViews\User\UserLoginPage.xaml.cs">
       <DependentUpon>UserLoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppViews\User\UserRegisterPage.xaml.cs">
       <DependentUpon>UserRegisterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\NavHelper.cs" />
+    <Compile Include="Infrastructure\AppHelper.cs" />
     <Compile Include="Infrastructure\ServiceConnection.cs" />
     <Compile Include="Infrastructure\UserInfo.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -173,6 +179,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AppViews\Tracking\LinesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppViews\Tracking\StopsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppViews\User\UserLoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,6 +209,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\NetMPKService\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.14393.0%29</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

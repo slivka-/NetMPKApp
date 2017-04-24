@@ -253,4 +253,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="LoginEncryptedUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="encryptedPassword" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginEncryptedUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="LoginEncryptedUserResult" nillable="true" type="q14:TupleOfbooleanstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEncryptedPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEncryptedPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetEncryptedPasswordResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

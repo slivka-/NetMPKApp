@@ -117,6 +117,12 @@ namespace NetMPKApp.NetMPKService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/LoginUser", ReplyAction="http://tempuri.org/IMPKService/LoginUserResponse")]
         System.Threading.Tasks.Task<System.Tuple<bool, string>> LoginUserAsync(string login, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/LoginEncryptedUser", ReplyAction="http://tempuri.org/IMPKService/LoginEncryptedUserResponse")]
+        System.Threading.Tasks.Task<System.Tuple<bool, string>> LoginEncryptedUserAsync(string login, string encryptedPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/GetEncryptedPassword", ReplyAction="http://tempuri.org/IMPKService/GetEncryptedPasswordResponse")]
+        System.Threading.Tasks.Task<string> GetEncryptedPasswordAsync(string login, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -232,6 +238,14 @@ namespace NetMPKApp.NetMPKService {
         
         public System.Threading.Tasks.Task<System.Tuple<bool, string>> LoginUserAsync(string login, string password) {
             return base.Channel.LoginUserAsync(login, password);
+        }
+        
+        public System.Threading.Tasks.Task<System.Tuple<bool, string>> LoginEncryptedUserAsync(string login, string encryptedPassword) {
+            return base.Channel.LoginEncryptedUserAsync(login, encryptedPassword);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetEncryptedPasswordAsync(string login, string password) {
+            return base.Channel.GetEncryptedPasswordAsync(login, password);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

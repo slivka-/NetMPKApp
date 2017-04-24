@@ -15,14 +15,14 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace NetMPKApp
+namespace NetMPKApp.AppViews.Tracking
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class LinesPage : Page
     {
-        public MainPage()
+        public LinesPage()
         {
             this.InitializeComponent();
         }
