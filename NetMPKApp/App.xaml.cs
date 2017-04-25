@@ -119,6 +119,7 @@ namespace NetMPKApp
         private void BackRequestHandler(object sender, BackRequestedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+            
             if (rootFrame == null)
                 return;
             if (closingFrames.Contains(rootFrame.CurrentSourcePageType))

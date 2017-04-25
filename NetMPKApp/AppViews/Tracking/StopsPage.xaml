@@ -6,9 +6,39 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <CollectionViewSource x:Name="_stopsSource" IsSourceGrouped="True" />
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="STOPS" VerticalAlignment="Top"/>
-
+        <AutoSuggestBox PlaceholderText="Wyszukaj przystanek" HorizontalAlignment="Stretch" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" Height="32" SuggestionChosen="AutoSuggestBox_SuggestionChosen" QuerySubmitted="AutoSuggestBox_QuerySubmitted"/>
+        <ListView x:Name="_stopsContainer" ItemsSource="{Binding Source={StaticResource _stopsSource}}" ItemClick="_stopsContainer_ItemClick" Margin="0,32,0,0" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE7C1;" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=stopName}" Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Key}" Click="Button_Click"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <Popup x:Name="_letterSelector" Opacity="0.5" IsOpen="False">
+            <Grid>
+                <TextBlock Text="TEST" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </Popup>
     </Grid>
 </Page>
