@@ -29,15 +29,29 @@
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
-                            <Button Content="{Binding Path=Key}" Click="Button_Click"/>
+                            <Button Content="{Binding Path=Key}" Click="Button_Click" Width="75" Height="40" FontWeight="Bold" Background="White" BorderBrush="Black" BorderThickness="0.5"/>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
-        <Popup x:Name="_letterSelector" Opacity="0.5" IsOpen="False">
-            <Grid>
-                <TextBlock Text="TEST" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Popup x:Name="_letterSelector" IsOpen="False" Margin="0,-50,0,0">
+            <Grid x:Name="_letterPicker" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#D8FFFFFF" RequestedTheme="Light">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="91"/>
+                    <RowDefinition Height="91"/>
+                    <RowDefinition Height="91"/>
+                    <RowDefinition Height="91"/>
+                    <RowDefinition Height="91"/>
+                    <RowDefinition Height="91"/>
+                    <RowDefinition Height="91"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="90"/>
+                </Grid.ColumnDefinitions>
             </Grid>
         </Popup>
     </Grid>

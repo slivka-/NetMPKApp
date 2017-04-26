@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using NetMPKApp.Infrastructure;
+using Windows.UI.Xaml.Documents;
+using Windows.UI.Text;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,20 +31,49 @@ namespace NetMPKApp.AppViews.Tracking
         public StopsPage()
         {
             this.InitializeComponent();
-            FillStopsList();
+            Init();
         }
 
 
-        private async void FillStopsList()
+        private async void Init()
         {
             var client = ServiceConnection.GetInstance().client;
             stopsList = await client.GetStopsNamesAsync();
-            _stopsSource.Source = stopsList.Select(s => new { stopName = s}).GroupBy(g => g.stopName.First());
+            _stopsSource.Source = stopsList.Select(s => new StopItem{ stopName = s}).GroupBy(g => g.stopName.First());
+
+            var firstLetters = stopsList.Select(s => s.First().ToString()).Distinct().ToList();
+            for (int i = 0; i < firstLetters.Count; i++)
+            {
+                Button b = new Button();
+                b.Width = 50;
+                b.Height = 50;
+                b.Content = firstLetters[i];
+                b.Margin = new Thickness() { Left = 10, Right = 10 };
+                //b.Background = Brush.
+                b.VerticalAlignment = VerticalAlignment.Center;
+                b.HorizontalAlignment = HorizontalAlignment.Center;
+                b.FontSize = 30;
+                b.FontWeight = FontWeights.ExtraBold;
+                b.Click += letterPickerClick;
+                _letterPicker.Children.Add(b);
+                Grid.SetRow(b, i / 4);
+                Grid.SetColumn(b, i % 4);
+            }
+            
+        }
+
+        private void letterPickerClick(object sender, RoutedEventArgs e)
+        {
+            _letterSelector.IsOpen = false;
+            var clickedLetter = (e.OriginalSource as Button).Content.ToString().First();
+            var x = _stopsContainer.Items.Where(w => (w as StopItem).stopName.First().Equals(clickedLetter)).First();
+            //_stopsContainer.ScrollIntoView(_stopsContainer.Items.Last());
+            _stopsContainer.ScrollIntoView(x, ScrollIntoViewAlignment.Leading);
         }
 
         private void _stopsContainer_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            //DO przystanku
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -70,6 +101,11 @@ namespace NetMPKApp.AppViews.Tracking
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _letterSelector.IsOpen = true;
+        }
+
+        private class StopItem
+        {
+            public string stopName { get; set; }
         }
     }
 }
