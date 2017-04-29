@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
+using NetMPKApp.AppViews.User;
 
 namespace NetMPKApp
 {
@@ -79,10 +80,21 @@ namespace NetMPKApp
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    if (AutoLogin())
-                        rootFrame.Navigate(typeof(IndexPage), e.Arguments);
-                    else
-                        rootFrame.Navigate(typeof(WelcomeScreen), e.Arguments);
+                    switch (AutoLogin())
+                    {
+                        case AutologinState.Succes:
+                            rootFrame.Navigate(typeof(IndexPage),true);
+                            break;
+                        case AutologinState.NoLogin:
+                            rootFrame.Navigate(typeof(WelcomeScreen));
+                            break;
+                        case AutologinState.LoginFailedNoInternet:
+                            rootFrame.Navigate(typeof(UserLoginPage),false);
+                            break;
+                        case AutologinState.LoginFailedBadCred:
+                            rootFrame.Navigate(typeof(UserLoginPage),true);
+                            break;
+                    }   
                 }
 
                 SystemNavigationManager.GetForCurrentView().BackRequested += BackRequestHandler;
@@ -122,21 +134,15 @@ namespace NetMPKApp
             
             if (rootFrame == null)
                 return;
-            if (closingFrames.Contains(rootFrame.CurrentSourcePageType))
+            if (rootFrame.CurrentSourcePageType == typeof(WelcomeScreen))
             {
                 e.Handled = true;
                 Current.Exit();
                 return;
             }
-            if (rootFrame.CanGoBack && !e.Handled)
-            {
-                e.Handled = true;
-                rootFrame.GoBack();
-                return;
-            }
         }
 
-        private bool AutoLogin()
+        private AutologinState AutoLogin()
         {
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             string _userLogin = localSettings.Values["userLogin"] as string;
@@ -155,15 +161,20 @@ namespace NetMPKApp
                         var userInfo = UserInfo.GetInstance();
                         userInfo._userId = loginResponse.Item2;
                         userInfo._userLogin = _userLogin;
+                        return AutologinState.Succes;
                     }
-                    return loginResponse.Item1;
+                    else
+                    {
+                        return AutologinState.LoginFailedBadCred;
+                    }
+                    
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return AutologinState.LoginFailedNoInternet;
                 }
             }
-            return false;
+            return AutologinState.NoLogin;
         }
 
         private void InitializeUI()
@@ -173,6 +184,14 @@ namespace NetMPKApp
                 var task =  StatusBar.GetForCurrentView().HideAsync().AsTask();
                 task.Wait();
             }
+        }
+
+        private enum AutologinState
+        {
+            NoLogin,
+            LoginFailedBadCred,
+            LoginFailedNoInternet,
+            Succes
         }
     }
 }

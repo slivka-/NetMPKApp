@@ -57,7 +57,10 @@ namespace NetMPKApp.AppViews.Tracking
                 b.Click += letterPickerClick;
                 _letterPicker.Children.Add(b);
                 Grid.SetRow(b, i / 4);
-                Grid.SetColumn(b, i % 4);
+                if(i>=firstLetters.Count-2)
+                    Grid.SetColumn(b, (i % 4)+1);
+                else
+                    Grid.SetColumn(b, i % 4);
             }
             
         }
@@ -67,7 +70,6 @@ namespace NetMPKApp.AppViews.Tracking
             _letterSelector.IsOpen = false;
             var clickedLetter = (e.OriginalSource as Button).Content.ToString().First();
             var x = _stopsContainer.Items.Where(w => (w as StopItem).stopName.First().Equals(clickedLetter)).First();
-            //_stopsContainer.ScrollIntoView(_stopsContainer.Items.Last());
             _stopsContainer.ScrollIntoView(x, ScrollIntoViewAlignment.Leading);
         }
 

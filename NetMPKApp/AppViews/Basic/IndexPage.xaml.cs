@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Core;
 using NetMPKApp.Infrastructure;
 using Windows.Storage;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -26,6 +27,8 @@ namespace NetMPKApp.AppViews.Basic
         public IndexPage()
         {
             this.InitializeComponent();
+            SystemNavigationManager.GetForCurrentView().BackRequested += BackRequestHandler;
+            _mainNavigationFrame.Navigate(typeof(StartPage));
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +55,15 @@ namespace NetMPKApp.AppViews.Basic
         {
             _mainNavigationFrame.Navigate(typeof(Tracking.StopsPage));
             MySpliView.IsPaneOpen = false;
+        }
+
+        private void BackRequestHandler(object sender, BackRequestedEventArgs e)
+        {
+            if (_mainNavigationFrame.CanGoBack)
+            {
+                e.Handled = true;
+                _mainNavigationFrame.GoBack();
+            }
         }
     }
 }

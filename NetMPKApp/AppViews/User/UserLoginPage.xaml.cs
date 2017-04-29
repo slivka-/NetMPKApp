@@ -25,10 +25,31 @@ namespace NetMPKApp.AppViews.User
     /// </summary>
     public sealed partial class UserLoginPage : Page
     {
+
         public UserLoginPage()
         {
             InitializeComponent();
             _LoginBox.Loaded += _LoginBox_Loaded;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            bool? isLoginBad = e.Parameter as bool?;
+            if (isLoginBad != null)
+            {
+                if ((bool)isLoginBad)
+                {
+                    AppHelper.ShowErrorInfo("Błąd", "Niepoprawny login lub hasło.");
+                }
+                else
+                {
+                    AppHelper.ShowErrorInfo("Błąd", "Problem z połączeniem z usługą.\nSpróbuj ponownie.");
+                    ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+                    _LoginBox.Text = localSettings.Values["userLogin"] as string;
+                    _autoLoginCheckBox.IsChecked = true;
+                }
+            }
         }
 
         private async void _LoginButton_Click(object sender, RoutedEventArgs e)
@@ -40,13 +61,14 @@ namespace NetMPKApp.AppViews.User
             }
             else
             {
+                ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                 var client = ServiceConnection.GetInstance().client;
                 Tuple<bool, string> loginResponse = null;
                 string _userLogin = _LoginBox.Text.Trim();
                 string _userPassword = _PasswordBox.Password.Trim();
                 try
                 {
-                    loginResponse = await client.LoginUserAsync(_userLogin, _userPassword);
+                        loginResponse = await client.LoginUserAsync(_userLogin, _userPassword);
                 }
                 catch (Exception)
                 {
@@ -63,12 +85,11 @@ namespace NetMPKApp.AppViews.User
                         userInfo._userLogin = _userLogin;
                         if (_autoLoginCheckBox.IsChecked == true)
                         {
-                            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
                             localSettings.Values["userLogin"] = _userLogin;
                             localSettings.Values["userEncryptedPassword"] = await client.GetEncryptedPasswordAsync(_userLogin, _userPassword);
                         }
 
-                        (Window.Current.Content as Frame).Navigate(typeof(Basic.IndexPage));
+                        (Window.Current.Content as Frame).Navigate(typeof(Basic.IndexPage),true);
                         return;
                     }
                     else
