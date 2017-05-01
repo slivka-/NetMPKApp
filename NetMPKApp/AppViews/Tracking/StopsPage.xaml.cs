@@ -62,7 +62,8 @@ namespace NetMPKApp.AppViews.Tracking
                 else
                     Grid.SetColumn(b, i % 4);
             }
-            
+            _stopsContainer.SelectedItem = null;
+            _stopsContainer.SelectionChanged += _stopsContainer_SelectionChanged;
         }
 
         private void letterPickerClick(object sender, RoutedEventArgs e)
@@ -71,11 +72,6 @@ namespace NetMPKApp.AppViews.Tracking
             var clickedLetter = (e.OriginalSource as Button).Content.ToString().First();
             var x = _stopsContainer.Items.Where(w => (w as StopItem).stopName.First().Equals(clickedLetter)).First();
             _stopsContainer.ScrollIntoView(x, ScrollIntoViewAlignment.Leading);
-        }
-
-        private void _stopsContainer_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //DO przystanku
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -95,9 +91,14 @@ namespace NetMPKApp.AppViews.Tracking
         {
             if (args.ChosenSuggestion != null)
             {
-                //DO przystanku
-                //(Parent as Frame).Navigate()
+                (Parent as Frame).Navigate(typeof(SingleStopPage), args.ChosenSuggestion.ToString());
             }
+        }
+
+        private void _stopsContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var sourceItem = (sender as ListView).SelectedItem as StopItem;
+            (Parent as Frame).Navigate(typeof(SingleStopPage), sourceItem.stopName);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -109,5 +110,7 @@ namespace NetMPKApp.AppViews.Tracking
         {
             public string stopName { get; set; }
         }
+
+
     }
 }

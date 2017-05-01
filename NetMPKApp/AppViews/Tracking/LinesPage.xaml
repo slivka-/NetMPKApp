@@ -6,9 +6,52 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <CollectionViewSource x:Name="_linesSource" IsSourceGrouped="True"/>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="LINES" VerticalAlignment="Top" />
-
+        <AutoSuggestBox x:Name="_linesSuggestBox" PlaceholderText="Wyszukaj linię" QueryIcon="Find" SuggestionChosen="AutoSuggestBox_SuggestionChosen" TextChanged="AutoSuggestBox_TextChanged" QuerySubmitted="AutoSuggestBox_QuerySubmitted"/>
+        <ListView x:Name="_linesContainer" ItemsSource="{Binding Source={StaticResource _linesSource}}" Margin="0,32,0,0" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Source="{Binding Path=imgRef}"/>
+                        <TextBlock Text="{Binding Path=lineNo}" Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Path=Key}" Click="Button_Click" Height="40" FontWeight="Bold" Background="White" BorderBrush="Black" BorderThickness="0.5"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <Popup x:Name="_lineSelector" IsOpen="False" Margin="0,-50,0,0">
+            <Grid x:Name="_linePicker" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#D8FFFFFF" RequestedTheme="Light">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="360"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Popup>
     </Grid>
 </Page>

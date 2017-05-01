@@ -29,7 +29,18 @@ namespace NetMPKApp.AppViews.User
         public UserLoginPage()
         {
             InitializeComponent();
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += UserLoginPage_BackRequested;
             _LoginBox.Loaded += _LoginBox_Loaded;
+        }
+
+        private void UserLoginPage_BackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
+        {
+            var rootFrame = Window.Current.Content as Frame;
+            if (rootFrame.CanGoBack)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

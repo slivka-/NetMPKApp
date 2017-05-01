@@ -7,5 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBox x:Name="_loginBox" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,25,10,0" PlaceholderText="Login" InputScope="EmailSmtpAddress"/>
+        <TextBlock x:Name="_loginMessage" Margin="20,66,20,0" VerticalAlignment="Top" />
+        <TextBox x:Name="_emailBox" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,95,10,0" PlaceholderText="E-mail" InputScope="EmailSmtpAddress"/>
+        <TextBlock x:Name="_emailMessage" Margin="20,136,20,0" VerticalAlignment="Top" />
+        <PasswordBox x:Name="_passwordBox" VerticalAlignment="Top" Margin="10,165,10,0" PlaceholderText="Hasło"/>
+        <TextBlock x:Name="_passwordMessage" Margin="20,206,20,0" VerticalAlignment="Top" />
+        <PasswordBox x:Name="_passwordConfirmBox" VerticalAlignment="Top" Margin="10,235,10,0" PlaceholderText="Potwierdź hasło"/>
+        <TextBlock x:Name="_passwordConfirmMessage" Margin="20,279,20,0" VerticalAlignment="Top" />
+        <Button x:Name="_registerButton" Margin="10,315,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Content="Zarejestruj" FontWeight="Bold" FontSize="36" Background="#FF3276B1" Click="_registerButton_Click" />
+    </Grid>
 </Page>

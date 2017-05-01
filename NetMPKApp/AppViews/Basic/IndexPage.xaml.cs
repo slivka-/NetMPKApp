@@ -65,5 +65,12 @@ namespace NetMPKApp.AppViews.Basic
                 _mainNavigationFrame.GoBack();
             }
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.Parameter != null && (e.Parameter as bool?) == true)
+                (Window.Current.Content as Frame).BackStack.Clear();
+        }
     }
 }
