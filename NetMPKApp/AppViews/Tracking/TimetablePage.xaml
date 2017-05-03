@@ -6,8 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <CollectionViewSource x:Name="_timetableSource" IsSourceGrouped="False" />
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <TextBlock x:Name="_image" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" FontSize="23" FontFamily="Segoe MDL2 Assets"/>
+        <TextBlock x:Name="_lineBlock" HorizontalAlignment="Stretch" Margin="60,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <TextBlock x:Name="_stopBlock" HorizontalAlignment="Stretch" Margin="10,40,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,70,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Kierunek:" FontSize="20"/>
+        <ToggleButton x:Name="_dirButton1"  HorizontalAlignment="Stretch" Margin="10,100,10,0" Height="35"  VerticalAlignment="Top" Click="_dirButton1_Click"/>
+        <ToggleButton x:Name="_dirButton2"  HorizontalAlignment="Stretch" Margin="10,140,10,0" Height="35"  VerticalAlignment="Top" Click="_dirButton2_Click"/>
+        <ToggleButton x:Name="_dayButton1"  HorizontalAlignment="Left" Margin="10,180,0,0" Height="35" Width="105"  Content="Dni powszednie" VerticalAlignment="Top" FontSize="10" Click="_dayButton1_Click"/>
+        <ToggleButton x:Name="_dayButton2"  HorizontalAlignment="Left" Margin="125,180,0,0" Height="35" Width="110" Content="Soboty"  VerticalAlignment="Top" FontSize="10" Click="_dayButton2_Click"/>
+        <ToggleButton x:Name="_dayButton3"  HorizontalAlignment="Left" Margin="245,180,0,0" Height="35" Width="105" Content="Niedziele i Święta" VerticalAlignment="Top" FontSize="10" Click="_dayButton3_Click"/>
+        <ListView x:Name="_timetableContainer" ItemsSource="{Binding Source={StaticResource _timetableSource}}" Margin="10,220,10,0" HorizontalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Grid BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="1"/>
+                            <ColumnDefinition MinWidth="260"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Path=hours}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                        <Rectangle Width="1" VerticalAlignment="Stretch" Fill="Black" Grid.Column="1"/>
+                        <TextBlock Text="{Binding Path=minutes}" VerticalAlignment="Center" Grid.Column="2" Padding="10" Width="auto" HorizontalAlignment="Stretch"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

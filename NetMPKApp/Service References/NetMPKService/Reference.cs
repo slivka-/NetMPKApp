@@ -85,6 +85,9 @@ namespace NetMPKApp.NetMPKService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/GetDirectionsForLine", ReplyAction="http://tempuri.org/IMPKService/GetDirectionsForLineResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetDirectionsForLineAsync(int lineNo, string stopName);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/GetNearestStop", ReplyAction="http://tempuri.org/IMPKService/GetNearestStopResponse")]
+        System.Threading.Tasks.Task<System.Tuple<string, double, double>> GetNearestStopAsync(double latitude, double longitude);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/GetStreetNameByStop", ReplyAction="http://tempuri.org/IMPKService/GetStreetNameByStopResponse")]
         System.Threading.Tasks.Task<string> GetStreetNameByStopAsync(string stopName);
         
@@ -194,6 +197,10 @@ namespace NetMPKApp.NetMPKService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<string>> GetDirectionsForLineAsync(int lineNo, string stopName) {
             return base.Channel.GetDirectionsForLineAsync(lineNo, stopName);
+        }
+        
+        public System.Threading.Tasks.Task<System.Tuple<string, double, double>> GetNearestStopAsync(double latitude, double longitude) {
+            return base.Channel.GetNearestStopAsync(latitude, longitude);
         }
         
         public System.Threading.Tasks.Task<string> GetStreetNameByStopAsync(string stopName) {

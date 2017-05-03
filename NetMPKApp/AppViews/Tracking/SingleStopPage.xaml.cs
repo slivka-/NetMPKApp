@@ -67,7 +67,7 @@ namespace NetMPKApp.AppViews.Tracking
             public SingleLineItem(int _lineNo)
             {
                 lineNo = _lineNo;
-                imgRef = (_lineNo<100) ? "ms-appx:///Assets/tram.png" : "ms-appx:///Assets/bus.png";
+                imgRef = (lineNo < 100) ? char.ConvertFromUtf32(60237) : char.ConvertFromUtf32(60231);
             }
         }
     }

@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="NetMPKApp.AppViews.Routes.StopCompassPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NetMPKApp.AppViews.Routes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="_StopTetx" HorizontalAlignment="Left" Margin="142,110,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+        <TextBlock x:Name="_latitudeText" HorizontalAlignment="Left" Margin="142,210,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+        <TextBlock x:Name="_LongitudeText" HorizontalAlignment="Left" Margin="142,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="62,210,0,0" TextWrapping="Wrap" Text="Latitude:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="62,342,0,0" TextWrapping="Wrap" Text="Longitude:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="_distance" HorizontalAlignment="Left" Margin="142,442,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+
+    </Grid>
+</Page>

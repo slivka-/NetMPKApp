@@ -117,10 +117,7 @@ namespace NetMPKApp.AppViews.Tracking
             {
                 lineNo = input.Item1;
 
-                if (lineNo < 100)
-                    imgRef = "ms-appx:///Assets/tram.png";
-                else
-                    imgRef = "ms-appx:///Assets/bus.png";
+                imgRef = (lineNo < 100) ? char.ConvertFromUtf32(60237) : char.ConvertFromUtf32(60231);
 
                 if (input.Item2 == "TRAM")
                 {

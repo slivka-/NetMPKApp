@@ -11,13 +11,13 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Image x:Name="_image" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="30"/>
+        <TextBlock x:Name="_image" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="30"  FontFamily="Segoe MDL2 Assets" FontSize="23"/>
         <TextBlock x:Name="_lineBlock" HorizontalAlignment="Stretch" Margin="60,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,40,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Kierunek:" FontSize="20" FontWeight="Bold"/>
-        <ToggleButton x:Name="_dirButton1"  HorizontalAlignment="Left" Margin="10,70,0,0" Height="35" Width="165" VerticalAlignment="Top" Click="_dirButton1_Click"/>
-        <ToggleButton x:Name="_dirButton2"  HorizontalAlignment="Left" Margin="185,70,0,0" Height="35" Width="165" VerticalAlignment="Top" Click="_dirButton2_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,110,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Przystanki:" FontSize="20"/>
-        <ListView x:Name="_stopsContainer" ItemsSource="{Binding Source={StaticResource _singleStopsSource}}" Margin="10,140,10,0" >
+        <ToggleButton x:Name="_dirButton1"  HorizontalAlignment="Stretch" Margin="10,70,10,0" Height="35" VerticalAlignment="Top" Click="_dirButton1_Click"/>
+        <ToggleButton x:Name="_dirButton2"  HorizontalAlignment="Stretch" Margin="10,110,10,0" Height="35" VerticalAlignment="Top" Click="_dirButton2_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,150,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Przystanki:" FontSize="20"/>
+        <ListView x:Name="_stopsContainer" ItemsSource="{Binding Source={StaticResource _singleStopsSource}}" Margin="10,180,10,0" >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="x:String">
                     <Grid>

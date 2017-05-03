@@ -22,7 +22,7 @@
                             <ColumnDefinition Width="50"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Source="{Binding Path=imgRef}"/>
+                        <TextBlock Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Text="{Binding Path=imgRef}" FontFamily="Segoe MDL2 Assets" FontSize="23"/>
                         <TextBlock Text="{Binding Path=lineNo}" Grid.Column="1"/>
                     </Grid>
                 </DataTemplate>

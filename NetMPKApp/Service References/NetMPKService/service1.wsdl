@@ -51,6 +51,12 @@
   <wsdl:message name="IMPKService_GetDirectionsForLine_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDirectionsForLineResponse" />
   </wsdl:message>
+  <wsdl:message name="IMPKService_GetNearestStop_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearestStop" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetNearestStop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearestStopResponse" />
+  </wsdl:message>
   <wsdl:message name="IMPKService_GetStreetNameByStop_InputMessage">
     <wsdl:part name="parameters" element="tns:GetStreetNameByStop" />
   </wsdl:message>
@@ -157,6 +163,10 @@
     <wsdl:operation name="GetDirectionsForLine">
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetDirectionsForLine" message="tns:IMPKService_GetDirectionsForLine_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetDirectionsForLineResponse" message="tns:IMPKService_GetDirectionsForLine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNearestStop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetNearestStop" message="tns:IMPKService_GetNearestStop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetNearestStopResponse" message="tns:IMPKService_GetNearestStop_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetStreetNameByStop">
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStreetNameByStop" message="tns:IMPKService_GetStreetNameByStop_InputMessage" />
@@ -269,6 +279,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDirectionsForLine">
       <soap:operation soapAction="http://tempuri.org/IMPKService/GetDirectionsForLine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNearestStop">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetNearestStop" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

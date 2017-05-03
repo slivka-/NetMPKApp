@@ -51,10 +51,7 @@ namespace NetMPKApp.AppViews.Tracking
             var lineInfo = await client.GetLineRoutesAsync(lineNo);
 
             _lineBlock.Text = "Linia: " + lineNo;
-            string imgRef = (lineNo < 100) ? "ms-appx:///Assets/tram.png" : "ms-appx:///Assets/bus.png";
-            var bImg = new BitmapImage();
-            bImg.UriSource = new Uri(_image.BaseUri, imgRef);
-            _image.Source = bImg;
+            _image.Text = (lineNo < 100) ? char.ConvertFromUtf32(60237) : char.ConvertFromUtf32(60231) ;
 
             _dirButton1.Content = lineInfo.First().Key;
             _dir1Stops = lineInfo.First().Value.Select(s => new SingleStopItem { stopName = s }).ToList();
@@ -66,8 +63,7 @@ namespace NetMPKApp.AppViews.Tracking
             _dir2Stops = lineInfo.Last().Value.Select(s => new SingleStopItem { stopName = s }).ToList();
 
             _stopsContainer.SelectedItem = null;
-            _stopsContainer.SelectionChanged += _stopsContainer_SelectionChanged;
-            
+            _stopsContainer.SelectionChanged += _stopsContainer_SelectionChanged; 
         }
 
         private void _stopsContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)

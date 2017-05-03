@@ -124,8 +124,17 @@
     <Compile Include="AppViews\Basic\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppViews\Routes\ReportIncidentPage.xaml.cs">
+      <DependentUpon>ReportIncidentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppViews\Routes\StopCompassPage.xaml.cs">
+      <DependentUpon>StopCompassPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppViews\Tracking\LinesPage.xaml.cs">
       <DependentUpon>LinesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppViews\Routes\RouteSearchPage.xaml.cs">
+      <DependentUpon>RouteSearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppViews\Tracking\SingleLinePage.xaml.cs">
       <DependentUpon>SingleLinePage.xaml</DependentUpon>
@@ -138,6 +147,9 @@
     </Compile>
     <Compile Include="AppViews\Tracking\TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppViews\User\UserAccountPage.xaml.cs">
+      <DependentUpon>UserAccountPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppViews\User\UserLoginPage.xaml.cs">
       <DependentUpon>UserLoginPage.xaml</DependentUpon>
@@ -197,7 +209,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AppViews\Routes\ReportIncidentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppViews\Routes\StopCompassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppViews\Tracking\LinesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppViews\Routes\RouteSearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppViews\Tracking\TimetablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppViews\User\UserAccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +270,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10240.0%29</Name>
+    </SDKReference>
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
       <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
     </SDKReference>

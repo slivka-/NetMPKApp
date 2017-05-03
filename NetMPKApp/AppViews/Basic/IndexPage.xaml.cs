@@ -72,5 +72,35 @@ namespace NetMPKApp.AppViews.Basic
             if (e.Parameter != null && (e.Parameter as bool?) == true)
                 (Window.Current.Content as Frame).BackStack.Clear();
         }
+
+        private void _SearchTrackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainNavigationFrame.Navigate(typeof(Routes.RouteSearchPage));
+            MySpliView.IsPaneOpen = false;
+        }
+
+        private void _ReportIncident_Click(object sender, RoutedEventArgs e)
+        {
+            _mainNavigationFrame.Navigate(typeof(Routes.ReportIncidentPage));
+            MySpliView.IsPaneOpen = false;
+        }
+
+        private void _MainPage_Click(object sender, RoutedEventArgs e)
+        {
+            _mainNavigationFrame.Navigate(typeof(StartPage));
+            MySpliView.IsPaneOpen = false;
+        }
+
+        private void _AccountButton_Click(object sender, RoutedEventArgs e)
+        {
+            _mainNavigationFrame.Navigate(typeof(User.UserAccountPage));
+            MySpliView.IsPaneOpen = false;
+        }
+
+        private void _NearestStop_Click(object sender, RoutedEventArgs e)
+        {
+            _mainNavigationFrame.Navigate(typeof(Routes.StopCompassPage));
+            MySpliView.IsPaneOpen = false;
+        }
     }
 }

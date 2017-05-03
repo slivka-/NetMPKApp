@@ -16,20 +16,105 @@
         </Rectangle>
         <Button  x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
                     Width="50" Height="50" Background="Gray" Click="HamburgerButton_Click" Grid.Row="0" />
-        <SplitView x:Name="MySpliView" IsPaneOpen="False" DisplayMode="Overlay" Grid.Row="1">
+        <SplitView x:Name="MySpliView" IsPaneOpen="False" DisplayMode="Overlay" Grid.Row="1" OpenPaneLength="250">
             <SplitView.Pane>
-                <StackPanel Background="Gray">
+                <StackPanel Background="Gray" HorizontalAlignment="Left">
+                    <StackPanel Background="Gray" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button x:Name="_MainPage" Click="_MainPage_Click" Height="50" Width="250" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20"  Text="&#xE80F;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0"/>
+                                <TextBlock Text="Strona główna" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                            </Grid>
+                        </Button>
+                    </StackPanel>
                     <StackPanel Background="Gray" Orientation="Horizontal">
-                        <Button x:Name="_LinesButton" FontFamily="Segoe MDL2 Assets"  Content="&#xE8AB;" Width="50" Height="50" Click="_LinesButton_Click"/>
-                        <TextBlock Text="Linie" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" />
+                        <Button x:Name="_LinesButton"  Click="_LinesButton_Click" Height="50" Width="250" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE8AB;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0"/>
+                                <TextBlock Text="Linie" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                            </Grid>
+                        </Button>
                     </StackPanel>
                     <StackPanel Background="Gray" Orientation="Horizontal" >
-                        <Button x:Name="_StopsButton"  Click="_StopsButton_Click" FontFamily="Segoe MDL2 Assets"  Content="&#xE7C1;" Width="50" Height="50"/>
-                        <TextBlock Text="Przystanki" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Row="0"/>
+                        <Button x:Name="_StopsButton"  Click="_StopsButton_Click" Height="50" Width="250" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Text="&#xE7C1;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0" FontSize="20"/>
+                                <TextBlock Text="Przystanki" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                            </Grid>
+                        </Button>
                     </StackPanel>
                     <StackPanel Background="Gray" Orientation="Horizontal" VerticalAlignment="Bottom">
-                        <Button x:Name="_LogoutButton" FontFamily="Segoe MDL2 Assets"  Content="&#xE8D7;" Width="50" Height="50" Click="_LogoutButton_Click"/>
-                        <TextBlock Text="Wyloguj" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0"/>
+                        <Button x:Name="_SearchTrackButton" Click="_SearchTrackButton_Click" Height="50" Width="250" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Text="&#59143;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0" FontSize="20"/>
+                                <TextBlock Text="Wyszukaj trasę" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Background="Gray" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button x:Name="_ReportIncident" Click="_ReportIncident_Click" Height="50" Width="250" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Text="&#xE81F;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0" FontSize="20"/>
+                                <TextBlock Text="Zgłoś incydent" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Background="Gray" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button x:Name="_NearestStop" Click="_NearestStop_Click" Height="50" Width="250" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Text="&#xE913;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0" FontSize="20"/>
+                                <TextBlock Text="Najbliższy przystanek" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Height="190"/>
+                    <StackPanel Background="Gray" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button x:Name="_AccountButton" Click="_AccountButton_Click" Height="50" Width="250" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Text="&#xE90F;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0" FontSize="20"/>
+                                <TextBlock Text="Konto" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Background="Gray" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <Button x:Name="_LogoutButton" Click="_LogoutButton_Click" Height="50" Width="250" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Text="&#xE8D7;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0" FontSize="20"/>
+                                <TextBlock Text="Wyloguj" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                            </Grid>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             </SplitView.Pane>
