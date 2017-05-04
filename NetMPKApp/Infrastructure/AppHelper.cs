@@ -38,6 +38,23 @@ namespace NetMPKApp.Infrastructure
 
             return (int)(dist * 1000);
         }
+
+        public static double CalculateAngleFromNorth(double lat1, double lon1, double lat2, double lon2)
+        {
+            lat1 = lat1.ToRadians();
+            lon1 = lon1.ToRadians();
+            lat2 = lat2.ToRadians();
+            lon2 = lon2.ToRadians();
+
+            double dLon = (lon2 - lon1);
+
+            double y = Math.Sin(dLon) * Math.Cos(lat2);
+            double x = Math.Cos(lat1) * Math.Sin(lat2) - Math.Sin(lat1) * Math.Cos(lat2) * Math.Cos(dLon);
+
+            double brng = Math.Atan2(y, x);
+
+            return  Math.Abs(360-brng.ToBearing());
+        }
     }
 
     public static class StaticExtensions
@@ -50,6 +67,11 @@ namespace NetMPKApp.Infrastructure
         public static double FromRadians(this double d)
         {
             return (d * 180) / Math.PI;
+        }
+
+        public static double ToBearing(this double d)
+        {
+            return (d.FromRadians() + 360) % 360;
         }
     }
 }

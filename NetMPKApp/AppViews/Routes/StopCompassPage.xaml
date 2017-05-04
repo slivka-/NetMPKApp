@@ -8,12 +8,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="_StopTetx" HorizontalAlignment="Left" Margin="142,110,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
-        <TextBlock x:Name="_latitudeText" HorizontalAlignment="Left" Margin="142,210,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
-        <TextBlock x:Name="_LongitudeText" HorizontalAlignment="Left" Margin="142,338,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="62,210,0,0" TextWrapping="Wrap" Text="Latitude:" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="62,342,0,0" TextWrapping="Wrap" Text="Longitude:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="_distance" HorizontalAlignment="Left" Margin="142,442,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+        <TextBlock Margin="10,10,10,0" TextWrapping="Wrap" Text="Przystanek:" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="32"/>
+        <TextBlock x:Name="_stopText" Margin="10,60,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="23" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Center" Margin="10,130,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Text="Odległość:" FontSize="21"/>
+        <TextBlock x:Name="_distanceText" HorizontalAlignment="Center" Margin="10,170,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="21" FontWeight="Bold"/>
+        <TextBlock x:Name="_NotFound" HorizontalAlignment="Center" Margin="0,390,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Text="Wyszukiwanie..." FontSize="25"/>
+        <Ellipse x:Name="_arrow" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,240,0,0" Height="310"  Stroke="#FF3276B1" Width="310" RenderTransformOrigin="0.5,0.5" StrokeThickness="15">
+            <Ellipse.Fill>
+                <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/NavArrow.png"/>
+            </Ellipse.Fill>
+        </Ellipse>
 
     </Grid>
 </Page>
