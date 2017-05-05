@@ -8,6 +8,47 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="Wybierz typ zdarzenia" Margin="10,10,10,0" FontSize="32" FontWeight="Bold"/>
+        <Button Margin="10,110,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160" Height="160" Padding="0" Click="Register_Incident">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="&#xE81F;" FontFamily="Segoe MDL2 Assets" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="120"/>
+                <TextBlock Text="Wypadek" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20"/>
+            </Grid>
+        </Button>
+        <Button Margin="10,110,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="160" Height="160" Padding="0" Click="Register_Incident">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="&#xE822;" FontFamily="Segoe MDL2 Assets" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="120"/>
+                <TextBlock Text="Prace drogowe" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+            </Grid>
+        </Button>
+        <Button Margin="10,290,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160" Height="160" Padding="0" Click="Register_Incident">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="ms-appx:///Assets/trafficJam.png"/>
 
+                <TextBlock Text="Korek" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20"/>
+            </Grid>
+        </Button>
+        <Button Margin="10,290,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="160" Height="160" Padding="0" Click="Register_Incident">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="&#xE814;" FontFamily="Segoe MDL2 Assets" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="120"/>
+                <TextBlock Text="Inne zdarzenie" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20"/>
+            </Grid>
+        </Button>
     </Grid>
 </Page>

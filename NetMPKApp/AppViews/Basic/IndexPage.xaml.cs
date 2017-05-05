@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Core;
 using NetMPKApp.Infrastructure;
 using Windows.Storage;
+using Windows.Devices.Geolocation;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace NetMPKApp.AppViews.Basic
@@ -29,6 +30,18 @@ namespace NetMPKApp.AppViews.Basic
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().BackRequested += BackRequestHandler;
             _mainNavigationFrame.Navigate(typeof(StartPage));
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.Parameter != null && (e.Parameter as bool?) == true)
+                (Window.Current.Content as Frame).BackStack.Clear();
+            if (!LocalizationService.isLocationAvailable)
+            {
+                var accessStatus = await Geolocator.RequestAccessAsync();
+                LocalizationService.InitLocationService(accessStatus);
+            }
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -64,13 +77,6 @@ namespace NetMPKApp.AppViews.Basic
                 e.Handled = true;
                 _mainNavigationFrame.GoBack();
             }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            if (e.Parameter != null && (e.Parameter as bool?) == true)
-                (Window.Current.Content as Frame).BackStack.Clear();
         }
 
         private void _SearchTrackButton_Click(object sender, RoutedEventArgs e)

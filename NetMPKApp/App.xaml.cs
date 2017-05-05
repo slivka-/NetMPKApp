@@ -96,8 +96,6 @@ namespace NetMPKApp
                             break;
                     }   
                 }
-
-                //SystemNavigationManager.GetForCurrentView().BackRequested += BackRequestHandler;
                 // Ensure the current window is active
                 InitializeUI();
                 Window.Current.Activate();
@@ -127,21 +125,6 @@ namespace NetMPKApp
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
-
-        /*
-        private void BackRequestHandler(object sender, BackRequestedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            
-            if (rootFrame == null)
-                return;
-            if (rootFrame.CurrentSourcePageType == typeof(WelcomeScreen))
-            {
-                e.Handled = true;
-                Current.Exit();
-                return;
-            }
-        }*/
 
         private AutologinState AutoLogin()
         {

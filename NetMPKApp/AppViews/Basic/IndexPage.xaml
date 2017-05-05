@@ -75,7 +75,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock FontFamily="Segoe MDL2 Assets"  Text="&#xE81F;" Width="50" Height="50" TextAlignment="Center" Padding="0,14,0,0" FontSize="20"/>
-                                <TextBlock Text="Zgłoś incydent" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
+                                <TextBlock Text="Zgłoś zdarzenie" FontSize="18" VerticalAlignment="Center" Padding="5,0,0,0" Grid.Column="1" />
                             </Grid>
                         </Button>
                     </StackPanel>

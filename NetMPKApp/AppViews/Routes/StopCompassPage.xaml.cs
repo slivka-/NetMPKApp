@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Threading.Tasks;
+using NetMPKApp.Infrastructure;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,7 +28,8 @@ namespace NetMPKApp.AppViews.Routes
     public sealed partial class StopCompassPage : Page
     {
         private Compass compass;
-        private GeolocationAccessStatus accessStatus;
+
+        private string acquiredStopName;
 
         private double currentLatitude;
         private double currentLongitude;
@@ -44,55 +46,43 @@ namespace NetMPKApp.AppViews.Routes
         }
 
         #region Init
-        private async Task InitLocationService()
-        {
-            if (accessStatus == GeolocationAccessStatus.Allowed)
-            {
-                Geolocator geolocator = new Geolocator { DesiredAccuracyInMeters = 5 };
-                geolocator.PositionChanged += Geolocator_PositionChanged;
-                Geoposition pos = await geolocator.GetGeopositionAsync();
-            }
-            else
-            {
-                await Infrastructure.AppHelper.ShowErrorInfo("Błąd", "Brak dostępu do lokalizacji!");
-            }
-        }
-
-        private void SetAccessStatus()
-        {
-            var t = Geolocator.RequestAccessAsync().AsTask();
-            t.Wait();
-            accessStatus = t.Result;
-        }
-
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            string stopName = e.Parameter as string;
-
-            SetAccessStatus();
-            await InitLocationService();
-            if (stopName == null)
-                await SetTartgetToNearestStop();
+            acquiredStopName = e.Parameter as string;
+            if (LocalizationService.isLocationAvailable)
+            {
+                LocalizationService.LocationChanged += LocalizationService_LocationChanged;
+                InitCompass();
+            }
             else
-                await SetTargetStop(stopName);
-            _stopText.Text = targetStopName;
-            InitCompass();
+            {
+                await AppHelper.ShowErrorInfo("Błąd", "Brak dostępu do lokalizacji!");
+            }
         }
 
-        private async Task SetTartgetToNearestStop()
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            var client = Infrastructure.ServiceConnection.GetInstance().client;
-            var result = await client.GetNearestStopAsync(currentLatitude, currentLongitude);
+            base.OnNavigatedFrom(e);
+            if (LocalizationService.isLocationAvailable)
+            {
+                LocalizationService.LocationChanged -= LocalizationService_LocationChanged;
+            }
+        }
+
+        private  void SetTartgetToNearestStop()
+        {
+            var client = ServiceConnection.GetInstance().client;
+            var result = client.GetNearestStopAsync(currentLatitude, currentLongitude).Result;
             targetStopName = result.Item1;
-            targetStopLatitude = result.Item2;
-            targetStopLongitude = result.Item3;
+            targetStopLatitude = result.Item3;
+            targetStopLongitude = result.Item2;
         }
 
-        private async Task SetTargetStop(string stopName)
+        private void SetTargetStop(string stopName)
         {
-            var client = Infrastructure.ServiceConnection.GetInstance().client;
-            var result = await client.GetStopByNameAsync(stopName);
+            var client = ServiceConnection.GetInstance().client;
+            var result = client.GetStopByNameAsync(stopName).Result;
             targetStopName = result.Item2;
             targetStopLatitude = result.Item5;
             targetStopLongitude = result.Item4;
@@ -111,24 +101,31 @@ namespace NetMPKApp.AppViews.Routes
             }
             else
             {
-                var t = Infrastructure.AppHelper.ShowErrorInfo("Błąd", "Nie znaleziono kompasu");
+                var t = AppHelper.ShowErrorInfo("Błąd", "Nie znaleziono kompasu");
                 t.Wait();
             }
         }
+
         #endregion
 
         #region UpdateHandlers
 
-        private async void Geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        private void LocalizationService_LocationChanged(object sender, EventArgs e)
         {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            var args = e as LocationChangedEventArgs;
+            currentLatitude = args.latitude;
+            currentLongitude = args.longitude;
+
+            if (targetStopName == null)
             {
-                currentLatitude = args.Position.Coordinate.Point.Position.Latitude;
-                currentLongitude = args.Position.Coordinate.Point.Position.Longitude;
-                RefreshUI();
-            });
+                if (acquiredStopName == null)
+                    SetTartgetToNearestStop();
+                else
+                    SetTargetStop(acquiredStopName);
+            }
+            RefreshUI();
         }
-        
+
         private async void Compass_ReadingChanged(object sender, CompassReadingChangedEventArgs e)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -143,22 +140,26 @@ namespace NetMPKApp.AppViews.Routes
                 if (Math.Abs(currentCompassReading - newReading) >= 1)
                 {
                     currentCompassReading = newReading;
-                    var bearing = Infrastructure.AppHelper.CalculateAngleFromNorth(currentLatitude, currentLongitude, targetStopLatitude, targetStopLongitude);
+                    var bearing = AppHelper.CalculateAngleFromNorth(currentLatitude, currentLongitude, targetStopLatitude, targetStopLongitude);
                     _arrow.RenderTransform = new RotateTransform() { Angle = (currentCompassReading+bearing)%360 };
                 }
             });
         }
 
-        private void RefreshUI()
+        private async void RefreshUI()
         {
-            var distance = Infrastructure.AppHelper.CalculateDistance(currentLatitude, currentLongitude, targetStopLatitude, targetStopLongitude);
+            var distance = AppHelper.CalculateDistance(currentLatitude, currentLongitude, targetStopLatitude, targetStopLongitude);
             if (distance < 20000)
             {
-                _NotFound.Visibility = Visibility.Collapsed;
-                _arrow.Visibility = Visibility.Visible;
-                _distanceText.Text = String.Format("Odległość: {0}m", distance.ToString());
-                var bearing = Infrastructure.AppHelper.CalculateAngleFromNorth(currentLatitude, currentLongitude, targetStopLatitude, targetStopLongitude);
-                _arrow.RenderTransform = new RotateTransform() { Angle = (currentCompassReading + bearing) % 360 };
+                await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+                {
+                    _stopText.Text = targetStopName;
+                    _NotFound.Visibility = Visibility.Collapsed;
+                    _arrow.Visibility = Visibility.Visible;
+                    _distanceText.Text = string.Format("Odległość: {0}m", distance.ToString());
+                    var bearing = AppHelper.CalculateAngleFromNorth(currentLatitude, currentLongitude, targetStopLatitude, targetStopLongitude);
+                    _arrow.RenderTransform = new RotateTransform() { Angle = (currentCompassReading + bearing) % 360 };
+                });
             }
         }
 
