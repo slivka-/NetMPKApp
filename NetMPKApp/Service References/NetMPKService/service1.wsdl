@@ -33,6 +33,12 @@
   <wsdl:message name="IMPKService_GetStopWithCords_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetStopWithCordsResponse" />
   </wsdl:message>
+  <wsdl:message name="IMPKService_GetNearestStop_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearestStop" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetNearestStop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNearestStopResponse" />
+  </wsdl:message>
   <wsdl:message name="IMPKService_GetAllLines_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllLines" />
   </wsdl:message>
@@ -51,11 +57,11 @@
   <wsdl:message name="IMPKService_GetDirectionsForLine_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDirectionsForLineResponse" />
   </wsdl:message>
-  <wsdl:message name="IMPKService_GetNearestStop_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetNearestStop" />
+  <wsdl:message name="IMPKService_GetProbableConnections_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProbableConnections" />
   </wsdl:message>
-  <wsdl:message name="IMPKService_GetNearestStop_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetNearestStopResponse" />
+  <wsdl:message name="IMPKService_GetProbableConnections_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProbableConnectionsResponse" />
   </wsdl:message>
   <wsdl:message name="IMPKService_GetStreetNameByStop_InputMessage">
     <wsdl:part name="parameters" element="tns:GetStreetNameByStop" />
@@ -152,6 +158,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStopWithCords" message="tns:IMPKService_GetStopWithCords_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetStopWithCordsResponse" message="tns:IMPKService_GetStopWithCords_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetNearestStop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetNearestStop" message="tns:IMPKService_GetNearestStop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetNearestStopResponse" message="tns:IMPKService_GetNearestStop_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllLines">
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetAllLines" message="tns:IMPKService_GetAllLines_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetAllLinesResponse" message="tns:IMPKService_GetAllLines_OutputMessage" />
@@ -164,9 +174,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetDirectionsForLine" message="tns:IMPKService_GetDirectionsForLine_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetDirectionsForLineResponse" message="tns:IMPKService_GetDirectionsForLine_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetNearestStop">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetNearestStop" message="tns:IMPKService_GetNearestStop_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetNearestStopResponse" message="tns:IMPKService_GetNearestStop_OutputMessage" />
+    <wsdl:operation name="GetProbableConnections">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetProbableConnections" message="tns:IMPKService_GetProbableConnections_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetProbableConnectionsResponse" message="tns:IMPKService_GetProbableConnections_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetStreetNameByStop">
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStreetNameByStop" message="tns:IMPKService_GetStreetNameByStop_InputMessage" />
@@ -259,6 +269,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetNearestStop">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetNearestStop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAllLines">
       <soap:operation soapAction="http://tempuri.org/IMPKService/GetAllLines" style="document" />
       <wsdl:input>
@@ -286,8 +305,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetNearestStop">
-      <soap:operation soapAction="http://tempuri.org/IMPKService/GetNearestStop" style="document" />
+    <wsdl:operation name="GetProbableConnections">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetProbableConnections" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

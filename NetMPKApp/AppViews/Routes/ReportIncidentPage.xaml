@@ -36,7 +36,6 @@
                     <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" Source="ms-appx:///Assets/trafficJam.png"/>
-
                 <TextBlock Text="Korek" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20"/>
             </Grid>
         </Button>
@@ -50,5 +49,17 @@
                 <TextBlock Text="Inne zdarzenie" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20"/>
             </Grid>
         </Button>
+        <Popup x:Name="_incidentPopup" IsOpen="False" Margin="0,-50,0,0">
+            <Grid Background="White" Width="360" Height="640">
+                <TextBlock x:Name="_incName" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,30,10,0" FontSize="25" FontWeight="Bold"/>
+                <TextBlock Height="60" Width="300" TextAlignment="Center" Text="Czy znajdujesz się na trasie pomiędzy przystankami" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,90,10,0" FontSize="20" TextWrapping="WrapWholeWords"/>
+                <TextBlock x:Name="_firstStop" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,160,10,0" FontWeight="Bold" Height="60" TextWrapping="WrapWholeWords"/>
+                <TextBlock x:Name="_secondStop" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,220,10,0" FontWeight="Bold" Height="60" TextWrapping="WrapWholeWords"/>
+                <TextBlock x:Name="_incGlyph" Visibility="Collapsed" Text="&#xE822;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,300,10,0" FontSize="120"/>
+                <Image x:Name="_incImg" Height="120" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,300,10,0"  Source="ms-appx:///Assets/trafficJam.png"/>
+                <Button Height="60" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,500,10,0" Content="Tak" FontSize="21" Background="#FF3276B1" Click="Confirm_Register"/>
+                <Button Height="60" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,570,10,0" Content="Nie, wprowadzę przystanki ręcznie" FontSize="21" Click="Manual_Connection"/>
+            </Grid>
+        </Popup>
     </Grid>
 </Page>

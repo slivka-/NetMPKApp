@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using NetMPKApp.Infrastructure;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,33 +25,81 @@ namespace NetMPKApp.AppViews.Routes
     /// </summary>
     public sealed partial class ReportIncidentPage : Page
     {
+        private double currentLongitude;
+        private double currentLatitude;
+
         public ReportIncidentPage()
         {
             this.InitializeComponent();
         }
 
-        private void Register_Incident(object sender, RoutedEventArgs e)
+        private async void Register_Incident(object sender, RoutedEventArgs e)
         {
-            var content = (((sender as Button).Content as Grid).Children[1] as TextBlock).Text.ToIncidentType();
-        }
-
-        /*
-        private async Task InitLocationService()
-        {
-            /*
-            if (accessStatus == GeolocationAccessStatus.Allowed)
+            if (currentLatitude != 0.0 && currentLongitude != 0.0)
             {
-                Geolocator geolocator = new Geolocator { DesiredAccuracyInMeters = 5 };
-                geolocator.PositionChanged += Geolocator_PositionChanged;
-                Geoposition pos = await geolocator.GetGeopositionAsync();
+                var incidentType = (((sender as Button).Content as Grid).Children[1] as TextBlock).Text;
+                var client = ServiceConnection.GetInstance().client;
+                var result = await client.GetProbableConnectionsAsync(currentLongitude, currentLatitude);
+                _incName.Text = incidentType;
+                _firstStop.Text = result.Item1;
+                _secondStop.Text = result.Item2;
+                _incidentPopup.IsOpen = true;
+                if (incidentType.ToIncidentType() == "JAM")
+                {
+                    _incGlyph.Visibility = Visibility.Collapsed;
+                    _incImg.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    _incGlyph.Visibility = Visibility.Visible;
+                    _incImg.Visibility = Visibility.Collapsed;
+                    if (incidentType.ToIncidentType() == "ACC")
+                        _incGlyph.Text = char.ConvertFromUtf32(59423);
+                    else if (incidentType.ToIncidentType() == "REP")
+                        _incGlyph.Text = char.ConvertFromUtf32(59426);
+                    else
+                        _incGlyph.Text = char.ConvertFromUtf32(59412);
+                }
+
             }
             else
             {
-                await Infrastructure.AppHelper.ShowErrorInfo("Błąd", "Brak dostępu do lokalizacji!");
+                await AppHelper.ShowErrorInfo("Poczekaj", "Wyszukiwanie lokalizacji w toku.");
             }
-            
+
         }
-         */
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (LocalizationService.isLocationAvailable)
+            {
+                LocalizationService.LocationChanged += LocalizationService_LocationChanged;
+                currentLatitude = LocalizationService.currentLatitude;
+                currentLongitude = LocalizationService.currentLongitude;
+            }
+            else
+            {
+                await AppHelper.ShowErrorInfo("Błąd", "Brak dostępu do lokalizacji!");
+            }
+        }
+
+        private void LocalizationService_LocationChanged(object sender, EventArgs e)
+        {
+            var args = e as LocationChangedEventArgs;
+            currentLatitude = args.latitude;
+            currentLongitude = args.longitude;
+        }
+
+        private void Confirm_Register(object sender, RoutedEventArgs e)
+        {
+            _incidentPopup.IsOpen = false;
+        }
+
+        private void Manual_Connection(object sender, RoutedEventArgs e)
+        {
+            _incidentPopup.IsOpen = false;
+        }
     }
 
     static class IncidentExtensions
