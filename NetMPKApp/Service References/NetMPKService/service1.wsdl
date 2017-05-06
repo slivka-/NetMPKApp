@@ -39,6 +39,12 @@
   <wsdl:message name="IMPKService_GetNearestStop_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetNearestStopResponse" />
   </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopsWithNeighbours_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopsWithNeighbours" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_GetStopsWithNeighbours_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStopsWithNeighboursResponse" />
+  </wsdl:message>
   <wsdl:message name="IMPKService_GetAllLines_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllLines" />
   </wsdl:message>
@@ -141,6 +147,12 @@
   <wsdl:message name="IMPKService_GetEncryptedPassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetEncryptedPasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IMPKService_RegisterTrafficIncident_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTrafficIncident" />
+  </wsdl:message>
+  <wsdl:message name="IMPKService_RegisterTrafficIncident_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTrafficIncidentResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMPKService">
     <wsdl:operation name="GetStopsNames">
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStopsNames" message="tns:IMPKService_GetStopsNames_InputMessage" />
@@ -161,6 +173,10 @@
     <wsdl:operation name="GetNearestStop">
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetNearestStop" message="tns:IMPKService_GetNearestStop_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetNearestStopResponse" message="tns:IMPKService_GetNearestStop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStopsWithNeighbours">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetStopsWithNeighbours" message="tns:IMPKService_GetStopsWithNeighbours_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetStopsWithNeighboursResponse" message="tns:IMPKService_GetStopsWithNeighbours_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllLines">
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetAllLines" message="tns:IMPKService_GetAllLines_InputMessage" />
@@ -230,6 +246,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/GetEncryptedPassword" message="tns:IMPKService_GetEncryptedPassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/GetEncryptedPasswordResponse" message="tns:IMPKService_GetEncryptedPassword_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RegisterTrafficIncident">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMPKService/RegisterTrafficIncident" message="tns:IMPKService_RegisterTrafficIncident_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMPKService/RegisterTrafficIncidentResponse" message="tns:IMPKService_RegisterTrafficIncident_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMPKService" type="tns:IMPKService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -271,6 +291,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetNearestStop">
       <soap:operation soapAction="http://tempuri.org/IMPKService/GetNearestStop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStopsWithNeighbours">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/GetStopsWithNeighbours" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -424,6 +453,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetEncryptedPassword">
       <soap:operation soapAction="http://tempuri.org/IMPKService/GetEncryptedPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterTrafficIncident">
+      <soap:operation soapAction="http://tempuri.org/IMPKService/RegisterTrafficIncident" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

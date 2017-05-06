@@ -79,6 +79,9 @@ namespace NetMPKApp.NetMPKService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/GetNearestStop", ReplyAction="http://tempuri.org/IMPKService/GetNearestStopResponse")]
         System.Threading.Tasks.Task<System.Tuple<string, double, double>> GetNearestStopAsync(double latitude, double longitude);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/GetStopsWithNeighbours", ReplyAction="http://tempuri.org/IMPKService/GetStopsWithNeighboursResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<System.Tuple<string, string>>> GetStopsWithNeighboursAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/GetAllLines", ReplyAction="http://tempuri.org/IMPKService/GetAllLinesResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<System.Tuple<int, string, string, string, string>>> GetAllLinesAsync();
         
@@ -129,6 +132,9 @@ namespace NetMPKApp.NetMPKService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/GetEncryptedPassword", ReplyAction="http://tempuri.org/IMPKService/GetEncryptedPasswordResponse")]
         System.Threading.Tasks.Task<string> GetEncryptedPasswordAsync(string login, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMPKService/RegisterTrafficIncident", ReplyAction="http://tempuri.org/IMPKService/RegisterTrafficIncidentResponse")]
+        System.Threading.Tasks.Task<bool> RegisterTrafficIncidentAsync(string incidentType, string stopFrom, string stopTo, string userID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -192,6 +198,10 @@ namespace NetMPKApp.NetMPKService {
         
         public System.Threading.Tasks.Task<System.Tuple<string, double, double>> GetNearestStopAsync(double latitude, double longitude) {
             return base.Channel.GetNearestStopAsync(latitude, longitude);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<System.Tuple<string, string>>> GetStopsWithNeighboursAsync() {
+            return base.Channel.GetStopsWithNeighboursAsync();
         }
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<System.Tuple<int, string, string, string, string>>> GetAllLinesAsync() {
@@ -260,6 +270,10 @@ namespace NetMPKApp.NetMPKService {
         
         public System.Threading.Tasks.Task<string> GetEncryptedPasswordAsync(string login, string password) {
             return base.Channel.GetEncryptedPasswordAsync(login, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RegisterTrafficIncidentAsync(string incidentType, string stopFrom, string stopTo, string userID) {
+            return base.Channel.RegisterTrafficIncidentAsync(incidentType, stopFrom, stopTo, userID);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

@@ -61,5 +61,16 @@
                 <Button Height="60" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,570,10,0" Content="Nie, wprowadzę przystanki ręcznie" FontSize="21" Click="Manual_Connection"/>
             </Grid>
         </Popup>
+        <Popup x:Name="_manualStop" IsOpen="False" Margin="0,-50,0,0">
+            <Grid Background="White" Width="360" Height="640">
+                <TextBlock x:Name="_manincName" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,30,10,0" FontSize="25" FontWeight="Bold"/>
+                <TextBlock Height="60" Width="300" TextAlignment="Center" Text="Wprowadź ręcznie przystanki" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,90,10,0" FontSize="20" TextWrapping="WrapWholeWords"/>
+                <AutoSuggestBox x:Name="_manualFirstStop" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,160,10,0" FontWeight="Bold"  PlaceholderText="Pierwszy przystanek" QueryIcon="Find" TextChanged="_manualFirstStop_TextChanged" SuggestionChosen="_manualFirstStop_SuggestionChosen" QuerySubmitted="_manualFirstStop_QuerySubmitted"/>
+                <AutoSuggestBox x:Name="_manualSecontStop" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,220,10,0" FontWeight="Bold" PlaceholderText="Drugi przystanek" QueryIcon="Find" TextChanged="_manualSecontStop_TextChanged" SuggestionChosen="_manualSecontStop_SuggestionChosen" QuerySubmitted="_manualSecontStop_QuerySubmitted"/>
+                <TextBlock x:Name="_manincGlyph" Visibility="Collapsed" Text="&#xE822;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,300,10,0" FontSize="120"/>
+                <Image x:Name="_manincImg" Height="120" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,300,10,0"  Source="ms-appx:///Assets/trafficJam.png"/>
+                <Button Height="60" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,540,10,0" Content="Tak" FontSize="21" Background="#FF3276B1" Click="Manual_RegisterIncident"/>
+            </Grid>
+        </Popup>
     </Grid>
 </Page>
