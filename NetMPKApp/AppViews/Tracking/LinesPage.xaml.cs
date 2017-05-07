@@ -83,7 +83,9 @@ namespace NetMPKApp.AppViews.Tracking
         {
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                sender.ItemsSource = rawLines.Where(w => w.ToString().StartsWith(sender.Text));
+                var x = rawLines.Where(w => w.ToString().StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase));
+                if(x != null)
+                    sender.ItemsSource = x;
             }
         }
 

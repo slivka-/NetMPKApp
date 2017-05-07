@@ -6,8 +6,50 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <CollectionViewSource x:Name="_routesSource" IsSourceGrouped="False" />
+        <CollectionViewSource x:Name="_singleRouteSource" IsSourceGrouped="False"/>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <TextBlock Margin="10,10,10,0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Wyszukaj trasę" FontSize="25"/>
+        <Button Margin="10,10,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" Content="&#xE734;" FontSize="25" Background="White" Click="Button_Click"/>
+        <AutoSuggestBox x:Name="_firstStop" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,50,10,0" FontWeight="Bold"  PlaceholderText="Przystanek startowy" QueryIcon="Find" TextChanged="_firstStop_TextChanged" SuggestionChosen="_firstStop_SuggestionChosen" QuerySubmitted="_firstStop_QuerySubmitted"/>
+        <AutoSuggestBox x:Name="_lastStop" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,90,10,0" FontWeight="Bold" PlaceholderText="Przystanek docelowy" QueryIcon="Find" TextChanged="_lastStop_TextChanged" SuggestionChosen="_lastStop_SuggestionChosen" QuerySubmitted="_lastStop_QuerySubmitted"/>
+        <Button x:Name="_searchButton" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,130,10,0" FontWeight="Bold" Content="Szukaj" Click="_searchButton_Click" Background="#FF3276B1"/>
+        <ListView x:Name="_routesContainer" ItemsSource="{Binding Source={StaticResource _routesSource}}" Margin="0,170,0,0" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Width="55" Height="20" Grid.Column="0" Fill="#FF85C1F5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=initialDelay}" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=firstLineSymbol}" FontFamily="Segoe MDL2 Assets" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                        <TextBlock Text="{Binding Path=firstLine}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=startTime}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="&#57359;" FontFamily="Segoe MDL2 Assets" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                        <TextBlock Text="..." Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="&#57359;" FontFamily="Segoe MDL2 Assets" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                        <TextBlock Text="{Binding Path=lastLineSymbol}" FontFamily="Segoe MDL2 Assets" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                        <TextBlock Text="{Binding Path=lastLine}" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=finishTime}" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Popup x:Name="_routePopup">
+            
+        </Popup>
     </Grid>
 </Page>

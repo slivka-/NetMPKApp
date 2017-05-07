@@ -70,5 +70,10 @@ namespace NetMPKApp.AppViews.Tracking
                 imgRef = (lineNo < 100) ? char.ConvertFromUtf32(60237) : char.ConvertFromUtf32(60231);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            (Parent as Frame).Navigate(typeof(Routes.StopCompassPage), _stopName);
+        }
     }
 }

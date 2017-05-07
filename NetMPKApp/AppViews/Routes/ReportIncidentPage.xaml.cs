@@ -157,7 +157,9 @@ namespace NetMPKApp.AppViews.Routes
         {
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                sender.ItemsSource = stopsList.Where(w => w.StartsWith(sender.Text));
+                var x = stopsList.Where(w => w.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase));
+                if (x != null)
+                    sender.ItemsSource = x;
             }
         }
 
@@ -178,7 +180,9 @@ namespace NetMPKApp.AppViews.Routes
         {
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                sender.ItemsSource = neighbouringStops.Where(w => w.Item1 == manualStopFrom).Where(w => w.Item2.StartsWith(sender.Text)).Select(s => s.Item2);
+                var x = neighbouringStops.Where(w => w.Item1 == manualStopFrom).Where(w => w.Item2.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase)).Select(s => s.Item2);
+                if (x != null)
+                    sender.ItemsSource = x;
             }
         }
 

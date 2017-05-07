@@ -124,6 +124,9 @@
     <Compile Include="AppViews\Basic\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppViews\Routes\FavoriteRoutesPage.xaml.cs">
+      <DependentUpon>FavoriteRoutesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppViews\Routes\ReportIncidentPage.xaml.cs">
       <DependentUpon>ReportIncidentPage.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppViews\Basic\StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppViews\Routes\FavoriteRoutesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
